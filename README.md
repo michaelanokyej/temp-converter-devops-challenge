@@ -34,6 +34,34 @@ This project provides a REST API for grading students' unit conversion problems.
    pip install -r requirements.txt
    python src/app.py
 
+## How to Test API
+1. In the terminal Run:
+   ```bash
+   curl -X POST http://localhost:8080/convert \
+   -H "Content-Type: application/json" \
+   -d '{
+         "value": 84.2,
+         "from_unit": "fahrenheit",
+         "to_unit": "rankine",
+         "student_response": 543.9
+      }'
+Expected output:
+```json
+{"output": "correct"}
+
+2. With a tool like postman, create a `POST` request to "http://127.0.0.1:8080/convert" . 
+In the body of the request, use
+   ```json 
+   {
+        "value": 317.33,
+        "from_unit": "kelvin",
+        "to_unit": "fahrenheit",
+        "student_response": 111.56
+    }
+Expected output:
+```json
+{"output": "incorrect"}
+
 
 ## Deployment
 ### Automated Deployment
