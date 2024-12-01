@@ -45,9 +45,11 @@ This project provides a REST API for grading students' unit conversion problems.
          "to_unit": "rankine",
          "student_response": 543.9
       }'
-Expected output:
-```json
-{"output": "correct"}
+   ```
+- Expected output:
+   ```json
+   {"output": "correct"}
+   ```
 
 2. With a tool like postman, create a `POST` request to "http://127.0.0.1:8080/convert" . 
 In the body of the request, use
@@ -58,10 +60,11 @@ In the body of the request, use
         "to_unit": "fahrenheit",
         "student_response": 111.56
     }
-Expected output:
-```json
-{"output": "incorrect"}
-
+    ```
+- Expected output:
+   ```json
+   {"output": "incorrect"}
+   ```
 
 ## Deployment
 ### Automated Deployment
