@@ -12,6 +12,7 @@ rm -f $ZIP_FILE
 # Install dependencies and package the app
 pip install -r requirements.txt -t ./package
 cp -r src/* package/
+cp scripts/lambda_handler.py package/
 cd package
 zip -r ../$ZIP_FILE .
 cd ..
@@ -24,7 +25,7 @@ if [ $? -ne 0 ]; then
         --function-name $FUNCTION_NAME \
         --runtime python3.9 \
         --role $ROLE_ARN \
-        --handler app.lambda_handler \
+        --handler scripts.lambda_handler.handler \
         --timeout 10 \
         --memory-size 128 \
         --zip-file fileb://$ZIP_FILE \
