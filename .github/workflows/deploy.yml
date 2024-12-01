@@ -64,7 +64,7 @@ jobs:
               --function-name $FUNCTION_NAME \
               --runtime python3.9 \
               --role $ROLE_ARN \
-              --handler scripts.lambda_handler.handler \
+              --handler lambda_handler.handler \
               --timeout 10 \
               --memory-size 128 \
               --zip-file fileb://deployment_package.zip
