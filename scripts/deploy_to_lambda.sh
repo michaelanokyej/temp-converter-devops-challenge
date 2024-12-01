@@ -4,15 +4,14 @@
 FUNCTION_NAME="unit-conversion-api"
 ZIP_FILE="deployment_package.zip"
 REGION="us-east-1"
-ROLE_ARN="arn:aws:iam::132667624413:role/LambdaExecutionRole" 
+ROLE_ARN="arn:aws:iam::132667624413:role/LambdaExecutionRole"
 
 # Clean up old deployment files
 rm -f $ZIP_FILE
 
 # Install dependencies and package the app
 pip install -r requirements.txt -t ./package
-cp -r src/* package/
-cp -r scripts/ package/
+cp *.py package/
 cd package
 zip -r ../$ZIP_FILE .
 cd ..
@@ -25,7 +24,7 @@ if [ $? -ne 0 ]; then
         --function-name $FUNCTION_NAME \
         --runtime python3.9 \
         --role $ROLE_ARN \
-        --handler scripts.lambda_handler.handler \
+        --handler lambda_handler.handler \
         --timeout 10 \
         --memory-size 128 \
         --zip-file fileb://$ZIP_FILE \
