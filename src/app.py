@@ -3,9 +3,8 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Configure logging
+# Configure logging for Lambda
 logging.basicConfig(
-    filename='/app/logs/flask.log',
     level=logging.DEBUG,
     format='%(asctime)s %(levelname)s: %(message)s',
 )
