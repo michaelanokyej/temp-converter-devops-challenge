@@ -13,8 +13,8 @@ This project provides a REST API for grading students' unit conversion problems.
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo-url.git
-   cd your-repo
+   git clone https://github.com/michaelanokyej/temp-converter-devops-challenge.git
+   cd temp-converter-devops-challenge
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
