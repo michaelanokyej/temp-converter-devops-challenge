@@ -12,7 +12,7 @@ rm -f $ZIP_FILE
 # Install dependencies and package the app
 pip install -r requirements.txt -t ./package
 cp -r src/* package/
-cp scripts/lambda_handler.py package/
+cp -r scripts/ package/
 cd package
 zip -r ../$ZIP_FILE .
 cd ..
