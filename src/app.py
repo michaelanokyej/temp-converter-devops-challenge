@@ -1,6 +1,15 @@
+import logging
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(
+    filename='/app/logs/flask.log',
+    level=logging.DEBUG,
+    format='%(asctime)s %(levelname)s: %(message)s',
+)
+logger = logging.getLogger()
 
 # Conversion functions
 def convert_temperature(value, from_unit, to_unit):
@@ -16,8 +25,10 @@ def convert_temperature(value, from_unit, to_unit):
 
 @app.route("/convert", methods=["POST"])
 def convert():
-    data = request.json
     try:
+        data = request.json
+        logger.debug(f"Received data: {data}")
+
         value = float(data.get("value"))
         from_unit = data.get("from_unit").lower()
         to_unit = data.get("to_unit").lower()
@@ -29,13 +40,15 @@ def convert():
         if correct_value is None:
             return jsonify({"output": "invalid"}), 400
 
+        logger.debug(f"Correct Value: {correct_value}, Student Response: {student_response}, Rounded Correct: {round(correct_value, 1)}, Rounded Student: {round(student_response, 1)}")
         # Validate student's response
         if round(correct_value, 1) == round(student_response, 1):
             return jsonify({"output": "correct"}), 200
         else:
             return jsonify({"output": "incorrect"}), 200
     except (ValueError, TypeError):
+        logger.error(f"Error occurred: {e}")
         return jsonify({"output": "invalid"}), 400
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=8080)
